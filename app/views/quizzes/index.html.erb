@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Quiz</h1>
+
+    <% @questions.each do |question| %>
+        <ul>
+            <li>
+                <%= form_with(model: @quiz, local: true) do |form| %>
+
+                    <%= question.order %>
+                    <%= question.question_description %>
+                    <%= question.path.title %>
+                    <ul>
+                        <% question.question_options.each do |option| %>
+                            <li><%= option.option_description %></li>
+                        <% end %>
+                    </ul>
+
+                    <div class="actions">
+                        <%= form.submit %>
+                    </div>
+                <% end %>
+                
+            </li>
+        </ul>
+      
+    <% end %>
+  </tbody>
+</table>

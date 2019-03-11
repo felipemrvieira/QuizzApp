@@ -11,7 +11,11 @@
 
   <body>
   
+  <% if student_signed_in? %>
     <p><%= current_student.email %></p>
+    <hr>
+  <% end %>
+  
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

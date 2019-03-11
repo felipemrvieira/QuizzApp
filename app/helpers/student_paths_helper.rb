@@ -1,0 +1,2 @@
+module StudentPathsHelper
+end
