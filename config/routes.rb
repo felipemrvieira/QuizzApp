@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :students
+  root to: "questions#index"
+  
   resources :question_options
   resources :questions
   resources :paths
