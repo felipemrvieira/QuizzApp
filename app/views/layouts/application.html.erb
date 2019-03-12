@@ -12,8 +12,7 @@
   <body>
   
   <% if student_signed_in? %>
-    <p><%= current_student.email %></p>
-    <hr>
+    <p style="float:right"><%= current_student.email %></p>
   <% end %>
   
     <p class="notice"><%= notice %></p>
