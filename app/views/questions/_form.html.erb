@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :path_id %>
+    <%= collection_select(:question, :path_id, Path.all, :id, :title, {}, {:class =>'form-control'} )%>
+  </div>
+
+  <div class="field">
     <%= form.label :order %>
     <%= form.number_field :order %>
   </div>
@@ -21,10 +26,22 @@
     <%= form.text_field :question_description %>
   </div>
 
-  <div class="field">
-    <%= form.label :path_id %>
-    <%= collection_select(:question, :path_id, Path.all, :id, :title, {}, {:class =>'form-control'} )%>
+
+
+
+  <div id="question_options">
+
+    <%= form.fields_for :question_options do |option| %>
+      <%= render 'question_option_fields', f: option %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association 'add option', form, :question_options %>
+      <br><br>
+    </div>
   </div>
+
+
 
   <div class="actions">
     <%= form.submit %>

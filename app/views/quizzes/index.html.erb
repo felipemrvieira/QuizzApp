@@ -27,3 +27,17 @@
     <% end %>
   </tbody>
 </table>
+
+<br>
+<br>
+<br>
+
+
+<% @paths.each do |path| %>
+    <p><%= current_student.email %> está matriculado na trilha:</p>
+    <p>
+        <%= link_to path do %>
+            Path: <%= path.title %> - Questões: <%= path.questions.count %>
+        <% end %>
+    </p>
+<% end %>

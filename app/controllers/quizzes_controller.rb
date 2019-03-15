@@ -6,6 +6,8 @@ class QuizzesController < ApplicationController
   def index
     @questions = Question.all
     @quiz = Quiz.new
+    @paths = current_student.paths
+
   end
 
   # GET /questions/1
