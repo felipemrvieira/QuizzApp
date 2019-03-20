@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_11_182506) do
+ActiveRecord::Schema.define(version: 2019_03_20_003524) do
 
   create_table "paths", force: :cascade do |t|
     t.string "title"
@@ -40,6 +40,10 @@ ActiveRecord::Schema.define(version: 2019_03_11_182506) do
     t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "question_id"
+    t.integer "question_option_id"
+    t.index ["question_id"], name: "index_quizzes_on_question_id"
+    t.index ["question_option_id"], name: "index_quizzes_on_question_option_id"
     t.index ["student_id"], name: "index_quizzes_on_student_id"
   end
 

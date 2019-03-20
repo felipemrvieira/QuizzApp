@@ -26,14 +26,21 @@
                     <li>
                         <%= form_with(model: @quiz, local: true) do |form| %>
 
-                            <%= question.order %>
-                            <%= question.question_description %>
                             <%= question.path.title %>
-                            <ul>
-                                <% question.question_options.each do |option| %>
-                                    <li><%= option.option_description %></li>
+                            <%= question.order %>
+                            <br>
+                            <%= question.question_description %>
+                            
+                            <div class="field">
+                                <%= form.label :question_option_id %>
+                                <%= collection_radio_buttons(:quiz, :question_option_id, question.question_options.all, :id, :option_description, {}, {:class =>'form-check-input'} ) do |b| %>
+                                    <div class="form-check">
+                                        <%= b.label(:class => 'form-check-label')  do %>
+                                            <%= b.radio_button + b.text %>
+                                        <% end %>
+                                    </div>
                                 <% end %>
-                            </ul>
+                            </div>
 
                             <div class="actions">
                                 <%= form.submit %>
