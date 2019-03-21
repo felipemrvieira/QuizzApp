@@ -26,13 +26,12 @@
     <%= form.text_field :question_description %>
   </div>
 
-
-
-
   <div id="question_options">
 
     <%= form.fields_for :question_options do |option| %>
+      <hr>
       <%= render 'question_option_fields', f: option %>
+      <hr>
     <% end %>
 
     <div class="links">
