@@ -2,7 +2,7 @@
 
 <h1>Quiz</h1>
 
-<% @paths.each do |path| %>
+<% @student_paths.each do |path| %>
     <p><%= current_student.email %> está matriculado na trilha:</p>
     <p>Trilha: <%= path.title %> - Questões: <%= path.questions.count %></p>
   
@@ -21,7 +21,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <% @questions.each do |question| %>
+            <% path.questions.each do |question| %>
                 <ul>
                     <li>
                         <%= form_with(model: @quiz, local: true) do |form| %>
