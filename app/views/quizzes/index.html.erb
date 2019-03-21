@@ -27,13 +27,12 @@
                         <%= form_with(model: @quiz, local: true) do |form| %>
 
                             <%= question.path.title %>
-                            <%= question.order %>
                             <br>
-                            <%= question.question_description %>
-                            
+                            <%= question.order %>: <%= question.question_description %>
+                            <%= form.hidden_field :question_id, :value => question.id %>
+                            <%= form.hidden_field :student_id, :value => current_student.id %>
                             <div class="field">
-                                <%= form.label :question_option_id %>
-                                <%= collection_radio_buttons(:quiz, :question_option_id, question.question_options.all, :id, :option_description, {}, {:class =>'form-check-input'} ) do |b| %>
+                                <%= collection_radio_buttons(:quiz, :question_option_id, question.question_options.all, :id, :option_description,  {:class =>'form-check-input'}, html_options = {:required => 'required'}  ) do |b| %>
                                     <div class="form-check">
                                         <%= b.label(:class => 'form-check-label')  do %>
                                             <%= b.radio_button + b.text %>
@@ -41,13 +40,11 @@
                                     </div>
                                 <% end %>
                             </div>
-
                             <div class="actions">
-                                <%= form.submit %>
+                                <%= form.submit "Responder", class: "btn btn-primary" %>
                             </div>
                         <% end %>
-                        
-                    </li>
+                    </li>   
                 </ul>
             
             <% end %>
