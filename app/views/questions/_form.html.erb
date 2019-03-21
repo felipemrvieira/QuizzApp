@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :path_id %>
-    <%= collection_select(:question, :path_id, Path.all, :id, :title, {}, {:class =>'form-control'} )%>
+    <%= collection_select(:question, :path_id, Path.all, :id, :option_description, {}, {:class =>'form-control'} )%>
   </div>
 
   <div class="field">
