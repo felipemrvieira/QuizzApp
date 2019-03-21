@@ -1,0 +1,17 @@
+<%= form_with(model: @quiz, remote: true) do |form| %>
+    <%= question.order %>: <%= question.question_description %>
+    <%= form.hidden_field :question_id, :value => question.id %>
+    <%= form.hidden_field :student_id, :value => current_student.id %>
+    <div class="field">
+        <%= collection_radio_buttons(:quiz, :question_option_id, question.question_options.all, :id, :option_description,  {:class =>'form-check-input'}, html_options = {:required => 'required'}  ) do |b| %>
+            <div class="form-check">
+                <%= b.label(:class => 'form-check-label')  do %>
+                    <%= b.radio_button + b.text %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+    <div class="actions">
+        <%= form.submit "Responder", class: "btn btn-primary" %>
+    </div>
+<% end %>

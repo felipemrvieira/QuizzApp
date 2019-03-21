@@ -10,32 +10,18 @@ class QuizzesController < ApplicationController
 
   end
 
-  # GET /questions/1
-  # GET /questions/1.json
-  def show
-  end
-
-  # GET /questions/new
-  def new
-    @question = Question.new
-  end
-
-  # GET /questions/1/edit
-  def edit
-  end
-
-  # POST /questions
-  # POST /questions.json
   def create
-    @question = Question.new(question_params)
+    @quiz = Quiz.new(question_params)
+    @acerto = @quiz.question_option.correct
 
     respond_to do |format|
-      if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
+      if @quiz.save
+        format.html { redirect_to @quiz, notice: 'Question was successfully created.' }
+        format.js
+        format.json { render :show, status: :created, location: @quiz }
       else
         format.html { render :new }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+        format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,6 +58,6 @@ class QuizzesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:order, :question_description, :path_id)
+      params.require(:quiz).permit(:student_id, :question_id, :question_option_id)
     end
 end

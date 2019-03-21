@@ -15,38 +15,32 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel"><%= path.title %></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
             <% path.questions.each do |question| %>
-                <ul>
-                    <li>
-                        <%= form_with(model: @quiz, local: true) do |form| %>
-
-                            <%= question.path.title %>
-                            <br>
-                            <%= question.order %>: <%= question.question_description %>
-                            <%= form.hidden_field :question_id, :value => question.id %>
-                            <%= form.hidden_field :student_id, :value => current_student.id %>
-                            <div class="field">
-                                <%= collection_radio_buttons(:quiz, :question_option_id, question.question_options.all, :id, :option_description,  {:class =>'form-check-input'}, html_options = {:required => 'required'}  ) do |b| %>
-                                    <div class="form-check">
-                                        <%= b.label(:class => 'form-check-label')  do %>
-                                            <%= b.radio_button + b.text %>
-                                        <% end %>
-                                    </div>
+                
+                <%= form_with(model: @quiz, remote: true) do |form| %>
+                    <%= question.order %>: <%= question.question_description %>
+                    <%= form.hidden_field :question_id, :value => question.id %>
+                    <%= form.hidden_field :student_id, :value => current_student.id %>
+                    <div class="field">
+                        <%= collection_radio_buttons(:quiz, :question_option_id, question.question_options.all, :id, :option_description,  {:class =>'form-check-input'}, html_options = {:required => 'required'}  ) do |b| %>
+                            <div class="form-check">
+                                <%= b.label(:class => 'form-check-label')  do %>
+                                    <%= b.radio_button + b.text %>
                                 <% end %>
                             </div>
-                            <div class="actions">
-                                <%= form.submit "Responder", class: "btn btn-primary" %>
-                            </div>
                         <% end %>
-                    </li>   
-                </ul>
-            
+                    </div>
+                    <div class="actions">
+                        <%= form.submit "Responder", class: "btn btn-primary" %>
+                    </div>
+                <% end %>
+                
             <% end %>
         </div>
         
