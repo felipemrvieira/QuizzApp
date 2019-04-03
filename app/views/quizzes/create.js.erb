@@ -1,1 +1,17 @@
 console.log("Tentativa: <%= @quiz.id %>\n\nQuestao: <%= @quiz.question_id %>\nAlternativa: <%= @quiz.question_option_id %>\nAcertou? <%= @acerto %>");
+
+$("#trilha").click(function(){
+    console.log("sdf");
+  $("#questao-1").removeClass("intro");
+});
+
+var prox =  <%=@quiz.question.order%> + 1;
+
+if( <%= @acerto %> == true){
+    $("#questao-<%= @quiz.question.order %>").addClass("bounceOutLeft");
+    setTimeout(function(){
+      $("#questao-<%= @quiz.question.order %>").addClass("hide");
+      $("#questao-"+prox).removeClass("hide");
+      $("#questao-"+prox).addClass("bounceInRight");
+    }, 500);
+}

@@ -18,3 +18,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+  
+$(document).ready(function(){
+    $('#questao-1').removeClass('hide');
+});
